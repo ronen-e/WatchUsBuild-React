@@ -3,9 +3,9 @@ import Immutable from 'immutable';
 var TransactionFields = Immutable.Record({
     id: undefined,
     itemId: undefined,
-    date: undefined,
+    purchaseDate: undefined,
     name: undefined,
-    payment: undefined,
+    price: undefined,
 });
 
 export class Transaction extends TransactionFields {
@@ -17,7 +17,7 @@ export class Transaction extends TransactionFields {
         var fields = {};
 
         [
-            'id', 'itemId', 'date', 'name', 'payment'
+            'id', 'itemId', 'purchaseDate', 'name', 'price'
         ].forEach(field =>
             fields[field] = (data[field] !== undefined) ? data[field] : this.get(field)
         );
@@ -30,9 +30,9 @@ export class Transaction extends TransactionFields {
         return {
             id: this.id,
             itemId: this.itemId,
-            date: this.date,
+            purchaseDate: this.purchaseDate,
             name: this.name,
-            payment: this.payment
+            price: this.price
         };
     }
     static fromJSON(json) {

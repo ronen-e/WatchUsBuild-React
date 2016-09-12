@@ -1,11 +1,13 @@
 import Immutable from 'immutable';
+import { Transaction } from './models/transaction';
 
 var CustomerFields = Immutable.Record({
     id: undefined,
     name: undefined,
     age: undefined,
     gender: undefined,
-    imageId: undefined
+    imageId: undefined,
+    transactions: Immutable.List()
 });
 
 export class Customer extends CustomerFields {
@@ -22,6 +24,12 @@ export class Customer extends CustomerFields {
             fields[field] = (data[field] !== undefined) ? data[field] : this.get(field)
         );
 
+        if (data.hasOwnProperty('transactions')) {
+            fields.transactions  = Immutable.List(data.transactions.map(item => new Transaction(item)));
+        } else {
+            fields.transactions = this.transactions;
+        }
+
         var newCustomer = new Customer(fields);
         return Immutable.is(this, newCustomer) ? this : newCustomer;
     }
@@ -36,9 +44,11 @@ export class Customer extends CustomerFields {
             name: this.name,
             age: this.age,
             gender: this.gender,
-            imageId: this.imageId
+            imageId: this.imageId,
+            transactions: this.transactions.toArray()
         };
     }
+
     static fromJSON(json) {
         return new Customer().parse(json);
     }
