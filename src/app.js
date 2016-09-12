@@ -3,20 +3,20 @@ import ReactDOM from 'react-dom';
 import {hashHistory, Router, Route, Redirect} from 'react-router';
 
 // Layout
-import Layout from './layout/layout';
+import Layout from './components/layout/layout';
 
 // Pages
-import BlogPage from './pages/blog';
-import PicturePage from './pages/picture';
-import VideoPage from './pages/video';
+import BlogPage from './components/pages/blog';
+import PicturePage from './components/pages/picture';
+import VideoPage from './components/pages/video';
 
 const app = (
   <Router history={hashHistory}>
     <Redirect from="/" to="/blog" />
-    <Route path="/" component={Layout}>
-      <Route path="blog" component={BlogPage} />
-      <Route path="picture" component={PicturePage} />
-      <Route path="video" component={VideoPage} />
+    <Route path="/" component={ Layout }>
+      <Route path="blog" component={ BlogPage } />
+      <Route path="picture" component={ PicturePage } />
+      <Route path="video" component={ VideoPage } />
     </Route>
   </Router>
 );
