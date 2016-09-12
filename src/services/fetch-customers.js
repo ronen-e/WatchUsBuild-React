@@ -11,7 +11,7 @@ function fetchCustomers() {
                 reject(err);
             } else {
                 // var parsedData = parse(response.body.data);
-                resolve(response.body.data);
+                resolve(response.body.data.customers);
             }
             console.info('error', err, 'response', response);
         });

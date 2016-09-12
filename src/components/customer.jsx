@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Customer extends Component {
+    static displayName = 'Customer';
     static propTypes = {
         customer: PropTypes.object.isRequired
     }
