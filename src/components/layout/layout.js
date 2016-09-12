@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Radium from 'radium';
+import style from '../../styles/top-menu';
 
 @Radium
 export default class Layout extends Component {
   render() {
     return (
       <div>
-        <div className="top-menu">
+        <div className="top-menu" style={ style }>
           <ul>
             <li>
               <Link to="/blog">Blog</Link>
