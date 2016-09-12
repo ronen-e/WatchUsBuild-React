@@ -1,7 +1,7 @@
-import React from 'react';
-import CommentBox from '../components/comment-box';
+import React, { Component } from 'react';
+import CommentBox from '../comment-box';
 
-export default class PicturePage extends React.Component {
+export default class PicturePage extends Component {
   render() {
     return (
       <div>
