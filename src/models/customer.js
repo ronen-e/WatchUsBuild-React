@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { Transaction } from './models/transaction';
+import { Transaction } from './transaction';
 
 var CustomerFields = Immutable.Record({
     id: undefined,

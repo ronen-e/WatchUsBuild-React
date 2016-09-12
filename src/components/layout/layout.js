@@ -11,6 +11,9 @@ export default class Layout extends Component {
         <div className="top-menu" style={ style }>
           <ul>
             <li>
+              <Link to="/customers">Customers</Link>
+            </li>
+            <li>
               <Link to="/blog">Blog</Link>
             </li>
             <li>
@@ -22,7 +25,7 @@ export default class Layout extends Component {
           </ul>
         </div>
 
-        {this.props.children}
+        { this.props.children }
       </div>
     )
   }

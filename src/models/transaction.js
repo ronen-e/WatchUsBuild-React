@@ -5,7 +5,7 @@ var TransactionFields = Immutable.Record({
     itemId: undefined,
     purchaseDate: undefined,
     name: undefined,
-    price: undefined,
+    price: undefined
 });
 
 export class Transaction extends TransactionFields {
