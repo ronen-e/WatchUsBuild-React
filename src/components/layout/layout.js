@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Radium from 'radium';
 
+@Radium
 export default class Layout extends Component {
   render() {
     return (
