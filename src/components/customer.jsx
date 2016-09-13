@@ -1,9 +1,22 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import deleteCustomerAction from '../state/actions/delete-customer';
 
+@connect(({ customers }) => {
+    return { customers };
+}, (dispatch) => {
+    return {
+        onDelete: (customerId) => dispatch(deleteCustomerAction(customerId))
+    };
+})
 export default class Customer extends Component {
     static displayName = 'Customer';
     static propTypes = {
-        customer: PropTypes.object.isRequired
+        customers: PropTypes.object.isRequired
+    }
+    onDelete(customerId) {
+        this.props.onDelete(customerId);
+    }
     getTransactions() {
         var customer = this.getCustomer();
         return customer.transactions || [];
@@ -15,11 +28,16 @@ export default class Customer extends Component {
     }
     render() {
         var customer = this.getCustomer();
+
+        if (!customer) {
+            return null;
+        }
+
         var transactions = this.getTransactions();
         return (
             <div>
                 <h2>{ customer.id }: { customer.name }</h2>
-                <span onClick={() => this.onDelete(customer.id)}>delete customer</span>
+                <span onClick={() => this.props.onDelete(customer.id)}>delete customer</span>
                 <ul className="transactions-list">
                     {transactions.map(transaction => (
                         <li key={ transaction.id } className="transaction-list-item">
