@@ -23,7 +23,7 @@ export default class Customer extends Component {
     }
     getCustomer() {
         var { customers, params } = this.props;
-        var customer = customers.find( (item) => item.id === Number(params.customerId) );
+        var customer = customers.get(Number(params.customerId));
         return customer;
     }
     render() {
@@ -36,8 +36,8 @@ export default class Customer extends Component {
         var transactions = this.getTransactions();
         return (
             <div>
-                <h2>{ customer.id }: { customer.name }</h2>
-                <span onClick={() => this.props.onDelete(customer.id)}>delete customer</span>
+                <h2 style={{ color: 'blue' }}>{ `${customer.id}: ${customer.name}` }</h2>
+                <span style={ { cursor: 'pointer' } } onClick={() => this.props.onDelete(customer.id)}>delete customer</span>
                 <ul className="transactions-list">
                     {transactions.map(transaction => (
                         <li key={ transaction.id } className="transaction-list-item">

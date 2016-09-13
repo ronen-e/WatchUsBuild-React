@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { List as newList } from 'immutable';
 import Radium from 'radium';
 import fetchCustomersAction from '../state/actions/fetch-customers';
 import addCustomerAction from '../state/actions/add-customer';
 import styles from '../styles/customers';
 
 @connect(({ customers }) => {
-    return { customers };
+    return { customers: customers.toList() };
 }, (dispatch) => {
     return {
         fetchCustomers: () => dispatch(fetchCustomersAction()),
