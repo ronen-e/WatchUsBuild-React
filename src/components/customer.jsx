@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import deleteCustomerAction from '../state/actions/delete-customer';
+import CustomerConfirmation from './customer-confirmation';
 
 @connect(({ customers }) => {
     return { customers };
@@ -14,9 +15,7 @@ export default class Customer extends Component {
     static propTypes = {
         customers: PropTypes.object.isRequired
     }
-    onDelete(customerId) {
-        this.props.onDelete(customerId);
-    }
+
     getTransactions() {
         var customer = this.getCustomer();
         return customer.transactions || [];
@@ -37,7 +36,9 @@ export default class Customer extends Component {
         return (
             <div>
                 <h2 style={{ color: 'blue' }}>{ `${customer.id}: ${customer.name}` }</h2>
-                <span style={ { cursor: 'pointer' } } onClick={() => this.props.onDelete(customer.id)}>delete customer</span>
+                <CustomerConfirmation onConfirm={() => this.props.onDelete(customer.id) }>
+                  Delete customer?
+                </CustomerConfirmation>
                 <ul className="transactions-list">
                     {transactions.map(transaction => (
                         <li key={ transaction.id } className="transaction-list-item">
