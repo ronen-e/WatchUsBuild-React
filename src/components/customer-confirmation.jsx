@@ -21,14 +21,14 @@ export default class CustomerConfirmation extends Component {
         if (this.state.showConfirm) {
             confirmNode = (
                 <span>
-                    <a href="" onClick={ this.confirmAction }>Yes </a>
+                    <a href="" onClick={ this.confirmAction } className="btn btn-default">Yes </a>
                     <span> - or - </span>
-                    <a href="" onClick={ this.toggleConfirmMessage }> No</a>
+                    <a href="" onClick={ this.toggleConfirmMessage } className="btn btn-default"> No</a>
                 </span>
             )
         } else {
             confirmNode = (
-                <a href="" onClick={ this.toggleConfirmMessage }>
+                <a href="" onClick={ this.toggleConfirmMessage } className="btn btn-danger">
                     {this.props.children}
                 </a>
             );
