@@ -13,7 +13,6 @@ export default handleActions({
 	},
 	[RESPONSE_CUSTOMERS_FETCH]: (state, action) => {
 		var { customers } = action.payload;
-		console.info('[STORE] RESPONSE_CUSTOMERS_FETCH', customers);
 		return addCustomers(state, customers);
 	},
 	[ADD_CUSTOMER]: {
