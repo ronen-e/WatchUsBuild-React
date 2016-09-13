@@ -16,10 +16,10 @@ export default class App extends Component {
     render() {
         return (
           <Router history={ browserHistory }>
-            <Redirect from="/" to="/blog" />
+            <Redirect from="/" to="/customers" />
             <Route path="/" component={ Layout }>
                 <Route path="customers" component={ Customers }>
-                    <Route path="/customer/:customerId" component={ Customer }/>
+                    <Route path=":customerId" component={ Customer }/>
                 </Route>
                 <Route path="blog" component={ BlogPage } />
                 <Route path="picture" component={ PicturePage } />
