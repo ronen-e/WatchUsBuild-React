@@ -1,5 +1,5 @@
 import { initializeStore } from './state/store';
-import { render } from './render.jsx';
+import { render } from './render';
 
 function bootstrap() {
     var store = initializeStore();

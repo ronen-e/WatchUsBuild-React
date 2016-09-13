@@ -9,8 +9,8 @@ import BlogPage from './pages/blog';
 import PicturePage from './pages/picture';
 import VideoPage from './pages/video';
 
-import Customer from './customer.jsx';
-import Customers from './customers.jsx';
+import Customer from './customer';
+import Customers from './customers';
 
 export default class App extends Component {
     render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './components/app.jsx';
+import App from './components/app';
 
 export function render(store) {
     window.React = React; // For chrome dev tool support

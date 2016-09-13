@@ -14,12 +14,11 @@ import autoprefixer from 'gulp-autoprefixer';
 import sass from 'gulp-sass';
 import minifyCSS from 'gulp-minify-css';
 
-watchify.args.debug = true;
-
 const sync = browserSync.create();
 
 // Input file.
 watchify.args.debug = true;
+watchify.args.extensions = [ '.jsx' ];
 var bundler = browserify('src/app.js', watchify.args);
 
 // Babel transform
