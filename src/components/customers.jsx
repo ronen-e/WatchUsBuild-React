@@ -1,28 +1,31 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { List as newList } from 'immutable';
-import fetchCustomers from '../services/fetch-customers';
+import Radium from 'radium';
+import fetchCustomersAction from '../state/actions/fetch-customers';
+import addCustomerAction from '../state/actions/add-customer';
+import styles from '../styles/customers';
 
+@connect(({ customers }) => {
+    return { customers };
+}, (dispatch) => {
+    return {
+        fetchCustomers: () => dispatch(fetchCustomersAction()),
+        onAddCustomer: () => dispatch( addCustomerAction())
+    };
+})
+@Radium
 export default class Customers extends Component {
+    static displayName = 'Customers';
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            customers: newList()
-        };
-    }
     componentWillMount() {
-        this.fetchCustomers();
-    }
-    async fetchCustomers() {
-        var customers = await fetchCustomers();
-        console.info('customers', customers);
-        this.setState({ customers });
+        this.props.fetchCustomers();
     }
     render() {
-        const { customers } = this.state;
+        const { customers, onAddCustomer } = this.props;
 
-        if (!customers.count()) {
+        if (!customers.size) {
             return null;
         }
 
@@ -30,10 +33,11 @@ export default class Customers extends Component {
             <div>
                 <h1>Customers</h1>
                 <div className="master">
+                    <button onClick={ this.props.onAddCustomer }>Add Customer</button>
                     <ul>
                         {customers.map(customer => (
-                            <li key={ customer.id }>
-                                <Link to={`/customer/${customer.id}`}>{ customer.name }</Link>
+                            <li key={ customer.id } style={ styles.customerListItem }>
+                                <Link to={`/customers/${customer.id}`}>{ customer.name }</Link>
                             </li>
                         ))}
                     </ul>
