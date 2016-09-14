@@ -8,7 +8,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div>
-        <div className="top-menu" style={ style }>
+        <div className="top-menu navbar navbar-default navbar-static-top" style={ style }>
           <ul>
             <li>
               <Link to="/customers">Customers</Link>
