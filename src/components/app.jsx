@@ -8,6 +8,7 @@ import Layout from './layout/layout';
 import BlogPage from './pages/blog';
 import PicturePage from './pages/picture';
 import VideoPage from './pages/video';
+import NewCustomerPage from './pages/new-customer';
 
 import Customer from './customer';
 import Customers from './customers';
@@ -21,6 +22,7 @@ export default class App extends Component {
                 <Route path="customers" component={ Customers }>
                     <Route path=":customerId" component={ Customer }/>
                 </Route>
+                <Route path="new-customer" component={ NewCustomerPage } />
                 <Route path="blog" component={ BlogPage } />
                 <Route path="picture" component={ PicturePage } />
                 <Route path="video" component={ VideoPage } />

@@ -25,7 +25,7 @@ export class Customer extends CustomerFields {
         );
 
         if (data.hasOwnProperty('transactions')) {
-            fields.transactions  = Immutable.List(data.transactions.map(item => new Transaction(item)));
+            fields.transactions = Immutable.List(data.transactions.map(item => new Transaction(item)));
         } else {
             fields.transactions = this.transactions;
         }

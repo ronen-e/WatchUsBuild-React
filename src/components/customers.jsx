@@ -32,7 +32,7 @@ export default class Customers extends Component {
             <div>
                 <h1>Customers</h1>
                 <div className="master">
-                    <button onClick={ this.props.onAddCustomer } className="btn btn-primary">Add Customer</button>
+                    <Link to="/new-customer" className="btn btn-primary">Add Customer</Link>
                     <ul>
                         {customers.map(customer => (
                             <li key={ customer.id } style={ styles.customerListItem }>
