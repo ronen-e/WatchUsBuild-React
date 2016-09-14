@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import deleteCustomerAction from '../state/actions/delete-customer';
 import CustomerConfirmation from './customer-confirmation';
 
@@ -14,6 +15,12 @@ export default class Customer extends Component {
     static displayName = 'Customer';
     static propTypes = {
         customers: PropTypes.object.isRequired
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.customers !== this.props.customers) {
+            browserHistory.push('/customers');
+        }
     }
 
     getTransactions() {

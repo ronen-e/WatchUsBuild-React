@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
+import { browserHistory } from 'react-router';
 
 export default class NewCustomerPage extends Component {
     static displayName = 'NewCustomerPage'
@@ -8,6 +9,12 @@ export default class NewCustomerPage extends Component {
         this.state = {
             gender: undefined
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.customers !== this.props.customers) {
+            browserHistory.push('/customers');
+        }
     }
 
     @autobind
