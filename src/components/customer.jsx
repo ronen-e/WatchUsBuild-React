@@ -25,13 +25,15 @@ export default class Customer extends Component {
 
     getTransactions() {
         var customer = this.getCustomer();
-        return customer.transactions || [];
+        return customer.transactions;
     }
+
     getCustomer() {
         var { customers, params } = this.props;
         var customer = customers.get(Number(params.customerId));
         return customer;
     }
+
     render() {
         var customer = this.getCustomer();
 
