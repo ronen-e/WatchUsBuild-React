@@ -4,7 +4,7 @@ import deleteCustomerAction from '../state/actions/delete-customer';
 import CustomerConfirmation from './customer-confirmation';
 
 @connect(({ customers }) => {
-    return { customers };
+    return { customers: customers.map };
 }, (dispatch) => {
     return {
         onDelete: (customerId) => dispatch(deleteCustomerAction(customerId))

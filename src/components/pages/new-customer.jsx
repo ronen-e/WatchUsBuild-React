@@ -23,17 +23,24 @@ export default class NewCustomerPage extends Component {
             <form ref="form" className="comment-form new-customer-form" onSubmit={ this.handleSubmit }>
                 <label>New Customer</label>
                 <div className="comment-form-fields">
-                    <input placeholder="Name:" ref="name" name="name" />
-                    <input placeholder="Age:" ref="age" name="age" />
-                    <input placeholder="Image Url:" ref="imageId" name="imageId" />
-                    <input type="radio" name="gender" value="male" onChange={ this.onChange } /> Male<br />
-                    <input type="radio" name="gender" value="female" onChange={ this.onChange } /> Female<br />
-                    <input type="radio" name="gender" value="both" onChange={ this.onChange } /> Both
-                    <input type="radio" name="gender" value="other" onChange={ this.onChange } /> Other
+                    <div className="form-group">
+                        <input placeholder="Name:" ref="name" name="name" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Age:" ref="age" name="age" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <input placeholder="Image Url:" ref="imageId" name="imageId" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <label className="radio-inline"><input type="radio" name="gender" value="male" onChange={ this.onChange } /> Male</label>
+                        <label className="radio-inline"><input type="radio" name="gender" value="female" onChange={ this.onChange } /> Female</label>
+                    </div>
+
                 </div>
                 <div className="comment-form-actions">
-                    <button type="submit">
-                        Post comment
+                    <button type="submit" className="btn">
+                        Create Customer
                     </button>
                 </div>
             </form>
