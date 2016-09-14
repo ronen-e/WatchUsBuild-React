@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import addCustomerAction from '../../state/actions/add-customer';
-import { browserHistory } from 'react-router';
+import navigateTo from '../../services/navigate-to';
 
 
 @connect(
@@ -26,7 +26,7 @@ export default class NewCustomerPage extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.customers !== this.props.customers) {
-            browserHistory.push('/customers');
+            navigateTo('/customers');
         }
     }
 

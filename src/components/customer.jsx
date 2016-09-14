@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import navigateTo from '../services/navigate-to';
 import deleteCustomerAction from '../state/actions/delete-customer';
 import CustomerConfirmation from './customer-confirmation';
 
@@ -19,7 +19,7 @@ export default class Customer extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.customers !== this.props.customers) {
-            browserHistory.push('/customers');
+            navigateTo('/customers');
         }
     }
 
