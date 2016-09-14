@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
+import addCustomerAction from '../../state/actions/add-customer';
 import { browserHistory } from 'react-router';
 
+
+@connect(
+    ({ customers }) => {
+        return { customers: customers.map };
+    },
+    (dispatch) => {
+        return {
+            onAddCustomer: (customer) => dispatch(addCustomerAction(customer))
+        };
+    }
+)
 export default class NewCustomerPage extends Component {
     static displayName = 'NewCustomerPage'
     constructor() {
@@ -62,7 +75,7 @@ export default class NewCustomerPage extends Component {
         var imageId = this.refs.imageId.value;
         var { gender } = this.state;
 
-        this.props.addCustomer({ name, age, imageId, gender });
+        this.props.onAddCustomer({ name, age, imageId, gender });
         this.refs.form.reset();
     }
 }

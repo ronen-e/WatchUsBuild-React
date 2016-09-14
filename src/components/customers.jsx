@@ -7,7 +7,7 @@ import addCustomerAction from '../state/actions/add-customer';
 import styles from '../styles/customers';
 
 @connect(({ customers }) => {
-    return { customers: customers.toList() };
+    return { customers: customers.map.toList() };
 }, (dispatch) => {
     return {
         fetchCustomers: () => dispatch(fetchCustomersAction()),

@@ -5,25 +5,43 @@ import { REQUEST_CUSTOMERS_FETCH, RESPONSE_CUSTOMERS_FETCH } from '../actions/fe
 import { ADD_CUSTOMER } from '../actions/add-customer';
 import { DELETE_CUSTOMER } from '../actions/delete-customer';
 
-const initialState = newMap();
+const initialState = {
+	map: newMap(),
+	loading: false,
+	nextId: 0
+};
 
 export default handleActions({
 	[REQUEST_CUSTOMERS_FETCH]: {
 
 	},
-	[RESPONSE_CUSTOMERS_FETCH]: (state, action) => {
-		var { customers } = action.payload;
-		return addCustomers(state, customers);
+	[RESPONSE_CUSTOMERS_FETCH]: (state, { payload }) => {
+		var { customers } = payload;
+		return {
+			...state,
+			nextId: customers.length + 1,
+			map: addCustomers(state.map, customers)
+		};
 	},
-	[ADD_CUSTOMER]: {
-
+	[ADD_CUSTOMER]: (state, { payload }) => {
+		var { customer } = payload;
+		customer.id = state.nextId;
+		return {
+			...state,
+			nextId: state.nextId + 1,
+			map: addCustomers(state.map, [ customer ])
+		};
 	},
 	[DELETE_CUSTOMER]: (state, { payload }) => {
 		var { customerId } = payload;
-		if (state.has(customerId)) {
-			state = state.delete(customerId);
+		var { map } = state;
+		if (map.has(customerId)) {
+			map = map.delete(customerId);
 		}
-		return state;
+		return {
+			...state,
+			map
+		};
 	}
 }, initialState);
 

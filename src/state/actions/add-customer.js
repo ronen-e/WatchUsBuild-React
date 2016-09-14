@@ -1,8 +1,7 @@
 export const ADD_CUSTOMER = 'ADD_CUSTOMER';
 
-export default function addCustomer({ customer }) {
+export default function addCustomer(customer) {
     return function(dispatch, getState) {
-        // var { customer: stateCurrentUser } = getState();
         dispatch({
             type: ADD_CUSTOMER,
             payload: { customer }
