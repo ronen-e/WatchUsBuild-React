@@ -5,25 +5,22 @@ export const RESPONSE_CUSTOMERS_FETCH = 'RESPONSE_CUSTOMERS_FETCH';
 
 export default function fetchCustomers() {
     return async function(dispatch, getState) {
-        var { customers } = getState();
         dispatch({
             type: REQUEST_CUSTOMERS_FETCH,
-            payload: { customers }
+            payload: { }
         });
         try {
             let data = await fetch();
             dispatch({
                 type: RESPONSE_CUSTOMERS_FETCH,
-                payload: {
-                    ...data
-                }
+                payload: { ...data }
             });
         } catch (error) {
-            dispatch({
-                type: RESPONSE_CUSTOMERS_FETCH,
-                payload: { error },
-                error: true
-            });
+            // dispatch({
+            //     type: RESPONSE_CUSTOMERS_FETCH,
+            //     payload: { error },
+            //     error: true
+            // });
         }
     };
 }

@@ -12,14 +12,22 @@ const initialState = {
 };
 
 export default handleActions({
-	[REQUEST_CUSTOMERS_FETCH]: {
-
+	[REQUEST_CUSTOMERS_FETCH]: (state, action) => {
+		return {
+			...state,
+			loading: true
+		};
 	},
 	[RESPONSE_CUSTOMERS_FETCH]: (state, { payload }) => {
 		var { customers } = payload;
+		var nextId = state.nextId;
+		if (customers && customers.length) {
+			nextId = customers.length + 1;
+		}
 		return {
 			...state,
-			nextId: customers.length + 1,
+			nextId,
+			loading: false,
 			map: addCustomers(state.map, customers)
 		};
 	},

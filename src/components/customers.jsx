@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Radium from 'radium';
 import fetchCustomersAction from '../state/actions/fetch-customers';
-import styles from '../styles/customers';
+import classnames from 'classnames';
 
 @connect(({ customers }) => {
     return { customers: customers.map.toList() };
@@ -12,32 +11,48 @@ import styles from '../styles/customers';
         fetchCustomers: () => dispatch(fetchCustomersAction())
     };
 })
-@Radium
 export default class Customers extends Component {
     static displayName = 'Customers';
 
     componentWillMount() {
         this.props.fetchCustomers();
     }
+
+    getCustomersListComponent(customers) {
+        const { params } = this.props;
+        var customerId = Number(params.customerId);
+        function linkClassName(id) {
+            var className = classnames('list-group-item', {
+                'active': id === customerId
+            });
+            return className;
+        }
+
+        return (
+            <ul className="list-group">
+                {customers.map(customer => (
+                    <Link key={ customer.id } to={`/customers/${customer.id}`} className={ linkClassName(customer.id) }>
+                        { customer.name }
+                    </Link>
+                ))}
+            </ul>
+        );
+    }
+
     render() {
         const { customers } = this.props;
 
-        if (!customers.size) {
-            return null;
+        var customersListComponent = null;
+        if (customers.size > 0) {
+            customersListComponent = this.getCustomersListComponent(customers);
         }
 
         return (
             <div>
                 <h1>Customers</h1>
                 <div className="master">
-                    <Link to="/new-customer" className="btn btn-primary">Add Customer</Link>
-                    <ul>
-                        {customers.map(customer => (
-                            <li key={ customer.id } style={ styles.customerListItem }>
-                                <Link to={`/customers/${customer.id}`}>{ customer.name }</Link>
-                            </li>
-                        ))}
-                    </ul>
+                    <Link to="/new-customer" className="btn btn-primary panel">Add Customer</Link><br />
+                    { customersListComponent }
                 </div>
                 <div className="detail">
                     { this.props.children }
