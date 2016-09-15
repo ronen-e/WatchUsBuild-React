@@ -1,14 +1,13 @@
 {
-  "name": "babel-with-gulp",
+  "name": "cpm-app",
   "version": "1.0.0",
-  "description": "Starter code for using Babel with Gulp",
-  "main": "index.js",
+  "description": "CPM application exercise",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development gulp watch",
-    "demo": "NODE_ENV=production gulp demo"
+    "start": "NODE_ENV=development gulp watch"
   },
-  "author": "Carlos Souza <carloshrsouza@gmail.com> (http://csouza.me/)",
+  "author": "Ronen Elster <alter.ronen@gmail.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
