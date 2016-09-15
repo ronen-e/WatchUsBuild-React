@@ -7,21 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development gulp watch"
   },
-  "author": "Ronen Elster <alter.ronen@gmail.com>",
+  "author": "Ronen Elster <alter.ronen@gmail.com> (https://github.com/ronen-e)",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/codeschool/babel-with-gulp.git"
+    "url": "https://github.com/ronen-e/cpm.git"
   },
   "keywords": [
-    "babel",
-    "gulp",
+    "CPM",
+    "exercise",
     "es2015"
   ],
   "bugs": {
-    "url": "https://github.com/codeschool/babel-with-gulp/issues"
+    "url": "https://github.com/ronen-e/cpm/issues"
   },
-  "homepage": "https://github.com/codeschool/babel-with-gulp#readme",
+  "homepage": "https://github.com/ronen-e/cpm/issues#readme",
   "devDependencies": {
     "autobind-decorator": "^1.3.3",
     "babel-core": "^6.7.4",
