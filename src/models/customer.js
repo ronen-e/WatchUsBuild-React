@@ -1,13 +1,14 @@
-import Immutable from 'immutable';
+import Immutable, { Record as newRecord, List as newList} from 'immutable';
 import { Transaction } from './transaction';
+import { DEFAULT_AVATAR } from '../services/constants';
 
-var CustomerFields = Immutable.Record({
+var CustomerFields = newRecord({
     id: undefined,
     name: undefined,
     age: undefined,
     gender: undefined,
-    imageId: undefined,
-    transactions: Immutable.List()
+    imageId: DEFAULT_AVATAR,
+    transactions: newList()
 });
 
 export class Customer extends CustomerFields {
@@ -25,7 +26,7 @@ export class Customer extends CustomerFields {
         );
 
         if (data.hasOwnProperty('transactions')) {
-            fields.transactions = Immutable.List(data.transactions.map(item => new Transaction(item)));
+            fields.transactions = newList(data.transactions.map(item => new Transaction(item)));
         } else {
             fields.transactions = this.transactions;
         }
@@ -35,7 +36,18 @@ export class Customer extends CustomerFields {
     }
 
     getAge() {
-        return Date.now() - this.age;
+        var now = new Date();
+        var then = new Date(this.age);
+        var age = now.getFullYear() - then.getFullYear();
+        var m = now.getMonth() - then.getMonth();
+        if (m < 0 || (m === 0 && now.getDate() < then.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    getBirthdate() {
+        return new Date(this.age).toDateString();
     }
 
     toJSON() {

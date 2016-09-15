@@ -1,6 +1,6 @@
-import Immutable from 'immutable';
+import Immutable, { Record as newRecord } from 'immutable';
 
-var TransactionFields = Immutable.Record({
+var TransactionFields = newRecord({
     id: undefined,
     itemId: undefined,
     purchaseDate: undefined,
@@ -24,6 +24,10 @@ export class Transaction extends TransactionFields {
 
         var newTransaction = new Transaction(fields);
         return Immutable.is(this, newTransaction) ? this : newTransaction;
+    }
+
+    getPurchaseDate() {
+        return new Date(this.purchaseDate);
     }
 
     toJSON() {

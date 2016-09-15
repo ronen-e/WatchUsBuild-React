@@ -20,13 +20,9 @@ export default handleActions({
 	},
 	[RESPONSE_CUSTOMERS_FETCH]: (state, { payload }) => {
 		var { customers } = payload;
-		var nextId = state.nextId;
-		if (customers && customers.length) {
-			nextId = customers.length + 1;
-		}
 		return {
 			...state,
-			nextId,
+			nextId: customers.length + 1,
 			loading: false,
 			map: addCustomers(state.map, customers)
 		};

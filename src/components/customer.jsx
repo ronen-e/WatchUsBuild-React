@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import navigateTo from '../services/navigate-to';
 import deleteCustomerAction from '../state/actions/delete-customer';
 import CustomerConfirmation from './customer-confirmation';
+import TransactionsTable from './transactions-table';
+import CustomerDetails from './customer-details';
+import { Customer as CustomerModel } from '../models/customer';
 
 @connect(({ customers }) => {
     return { customers: customers.map };
@@ -14,18 +18,14 @@ import CustomerConfirmation from './customer-confirmation';
 export default class Customer extends Component {
     static displayName = 'Customer';
     static propTypes = {
-        customers: PropTypes.object.isRequired
+        customers: ImmutablePropTypes.mapOf(PropTypes.instanceOf(CustomerModel)).isRequired,
+        params: PropTypes.object.isRequired
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.customers !== this.props.customers) {
             navigateTo('/customers');
         }
-    }
-
-    getTransactions() {
-        var customer = this.getCustomer();
-        return customer.transactions;
     }
 
     getCustomer() {
@@ -41,24 +41,27 @@ export default class Customer extends Component {
             return null;
         }
 
-        var transactions = this.getTransactions();
+        var transactions = customer.transactions;
+        var transactionsComponent = null;
+        if (transactions.size > 0) {
+            transactionsComponent = <TransactionsTable items={ transactions } />;
+        }
+
         return (
             <div>
-                <h2 style={{ color: 'blue' }}>{ `${customer.id}: ${customer.name}` }</h2>
-                <CustomerConfirmation onConfirm={() => this.props.onDelete(customer.id) }>
-                  Delete customer?
-                </CustomerConfirmation>
-                <ul className="transactions-list">
-                    {transactions.map(transaction => (
-                        <li key={ transaction.id } className="transaction-list-item">
-                            <h3>ID: { transaction.id }</h3>
-                            <h3>DATE: { transaction.purchaseDate }</h3>
-                            <h3>Item ID: { transaction.itemId }</h3>
-                            <h3>Item Name: { transaction.name }</h3>
-                            <h3>Payment ($): { transaction.price }</h3>
-                        </li>
-                    ))}
-                </ul>
+                <div className="row well well-sm">
+                    <span className="col-sm-6">{ `${customer.id}: ${customer.name}` }</span>
+                    <CustomerConfirmation className="col-sm-6 pull-right text-right"
+                        onConfirm={() => this.props.onDelete(customer.id) }>
+                        Delete customer?
+                    </CustomerConfirmation>
+                </div>
+                <div className="row">
+                    <CustomerDetails customer={ customer } />
+                </div>
+                <div className="row">
+                    { transactionsComponent }
+                </div>
             </div>
         );
     }
