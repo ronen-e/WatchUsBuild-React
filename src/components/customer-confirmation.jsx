@@ -34,8 +34,9 @@ export default class CustomerConfirmation extends Component {
             );
         }
 
+        var { onConfirm, ...props } = this.props;
         return (
-            <div className="comment-confirm">
+            <div { ...props }>
                 {confirmNode}
             </div>
         );

@@ -1,41 +1,3 @@
-.article {
-  padding-bottom: 40px;
-  padding-top: 40px;
-}
-
-.article-body {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.article-title {
-  border-bottom: 3px solid #6ba2aa;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.article--picture-author {
-  border-bottom: 2px solid #6BA2AA;
-  color: #6BA2AA;
-  font-size: 16px;
-  padding: 0 20px 20px;
-  margin: 0 0 30px;
-  text-transform: uppercase;
-}
-
-.article--picture-img,
-.article--video-img {
-  margin: auto;
-  max-width: 100%;
-  width: 500px;
-}
-
-.article--picture-img > img,
-.article--video-img > img {
-  max-width: 100%;
-}
-
 .cell {
   margin: 0 auto;
   max-width: 800px;
@@ -121,7 +83,7 @@
   padding-bottom: 5px;
 }
 
-.comment-form {
+.customer-form {
   background-color: #9ecbd2;
   border-radius: 10px;
   margin-bottom: 40px;
@@ -129,7 +91,7 @@
   position: relative;
 }
 
-.comment-form::before {
+.customer-form::before {
   background: url("../images/illo-gears.svg") center no-repeat;
   content: '';
   height: 80px;
@@ -142,14 +104,14 @@
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
-  .comment-form::before {
+  .customer-form::before {
     background-size: 100%;
     top: -63px;
     width: 90px;
   }
 }
 
-.comment-form-actions > button {
+.customer-form-actions > button {
   background-color: #fce87c;
   border: 0;
   border-radius: 10px;
@@ -162,21 +124,21 @@ and (max-device-width : 667px) {
   transition: 0.2s ease-in-out;
 }
 
-.comment-form-actions > button:active,
-.comment-form-actions > button:focus,
-.comment-form-actions > button:hover {
+.customer-form-actions > button:active,
+.customer-form-actions > button:focus,
+.customer-form-actions > button:hover {
   background-color: #fbe259;
 }
 
-.comment-form > label {
+.customer-form > label {
   color: #6ba2aa;
   display: block;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
 
-.comment-form-fields > input,
-.comment-form-fields > textarea {
+.customer-form-fields > input,
+.customer-form-fields > textarea {
   border: 0;
   border-radius: 10px;
   box-sizing: border-box;
@@ -185,17 +147,6 @@ and (max-device-width : 667px) {
   width: 100%;
   outline: none;
   resize: none;
-}
-
-.row {
-  background-color: #6ba2aa;
-  overflow: hidden;
-  padding-bottom: 40px;
-  padding-top: 40px;
-}
-
-.row.comments-container {
-  min-height: 300px;
 }
 
 @media screen and (max-width: 800px) {

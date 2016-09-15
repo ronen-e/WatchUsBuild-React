@@ -40,9 +40,9 @@ export default class NewCustomerPage extends Component {
 
     render() {
         return (
-            <form ref="form" className="comment-form new-customer-form" onSubmit={ this.handleSubmit }>
+            <form ref="form" className="customer-form new-customer-form" onSubmit={ this.handleSubmit }>
                 <label>New Customer</label>
-                <div className="comment-form-fields">
+                <div className="customer-form-fields">
                     <div className="form-group">
                         <input placeholder="Name:" ref="name" name="name" className="form-control" />
                     </div>
@@ -58,7 +58,7 @@ export default class NewCustomerPage extends Component {
                     </div>
 
                 </div>
-                <div className="comment-form-actions">
+                <div className="customer-form-actions">
                     <button type="submit" className="btn">
                         Create Customer
                     </button>
