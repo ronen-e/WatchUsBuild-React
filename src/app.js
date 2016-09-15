@@ -4,6 +4,7 @@ import { render } from './render';
 /**
  * TODO
  * Server - send same response -> check if valid route
+ * Persist data
  * Translations
  * Loading spinner component
  * Error handlers
@@ -11,7 +12,8 @@ import { render } from './render';
  * Mobile adaptation
  * Old browsers adaptation
  * Get add customer and delete customer confirmation from backend
- * validation (Add new customer form)
+ * validation (for new customer form input)
+ * Add fields to new customer form: image, birthdate
  * pagination
  * npm symlinks for root level
  * Tests
