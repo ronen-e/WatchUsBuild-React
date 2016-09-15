@@ -28,7 +28,7 @@ export default class CustomerConfirmation extends Component {
             )
         } else {
             confirmNode = (
-                <a href="" onClick={ this.toggleConfirmMessage } className="btn btn-danger">
+                <a href="" onClick={ this.toggleConfirmMessage } className="btn btn-danger btn-xs">
                     {this.props.children}
                 </a>
             );

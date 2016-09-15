@@ -49,7 +49,7 @@ export default class Customer extends Component {
 
         return (
             <div>
-                <div className="row well well-sm">
+                <div className="well well-md">
                     <span className="col-sm-6">{ `${customer.id}: ${customer.name}` }</span>
                     <CustomerConfirmation className="col-sm-6 pull-right text-right"
                         onConfirm={() => this.props.onDelete(customer.id) }>

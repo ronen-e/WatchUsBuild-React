@@ -12,7 +12,7 @@ export default class CustomerDetails extends Component {
         return (
             <div>
                 <div className="col-xs-2 col-sm-3" style={ { marginBottom: '10px' } }>
-                    <img alt={ customer.name } src={ customer.imageId } style={ { width: '100%', minWidth: '100px' }} />
+                    <img alt={ customer.name } src={ customer.imageId } style={ { width: '100%', minWidth: '100px', padding: '0' }} />
                 </div>
                 <div className="col-xs-10 col-sm-9 panel">
                     <ul className="list-group">
