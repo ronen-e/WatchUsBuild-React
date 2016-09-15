@@ -4,6 +4,7 @@ import { render } from './render';
 /**
  * TODO
  * Server - send same response -> check if valid route
+ * Translations
  * Loading spinner component
  * Error handlers
  * 404 page component

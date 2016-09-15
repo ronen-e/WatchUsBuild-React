@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import fetchCustomersAction from '../state/actions/fetch-customers';
+import fetchCustomersAction from '../../state/actions/fetch-customers';
 import classnames from 'classnames';
 
 @connect(({ customers }) => {
@@ -48,13 +48,12 @@ export default class Customers extends Component {
         }
 
         return (
-            <div>
-                <h1>Customers</h1>
-                <div className="master">
+            <div className="row">
+                <div className="master col-sm-4">
                     <Link to="/new-customer" className="btn btn-primary panel">Add Customer</Link><br />
                     { customersListComponent }
                 </div>
-                <div className="detail">
+                <div className="detail col-sm-8">
                     { this.props.children }
                 </div>
             </div>

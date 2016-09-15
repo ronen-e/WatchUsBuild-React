@@ -5,29 +5,22 @@ import { browserHistory, Router, Route, Redirect } from 'react-router';
 import Layout from './layout/layout';
 
 // Pages
-import BlogPage from './pages/blog';
-import PicturePage from './pages/picture';
-import VideoPage from './pages/video';
 import NewCustomerPage from './pages/new-customer';
-
+import CustomersPage from './pages/customers';
 import Customer from './customer';
-import Customers from './customers';
 
 export default class App extends Component {
     render() {
         return (
-          <Router history={ browserHistory }>
-            <Redirect from="/" to="/customers" />
-            <Route path="/" component={ Layout }>
-                <Route path="customers" component={ Customers }>
-                    <Route path=":customerId" component={ Customer }/>
+            <Router history={ browserHistory }>
+                <Redirect from="/" to="/customers" />
+                <Route path="/" component={ Layout }>
+                    <Route path="customers" component={ CustomersPage }>
+                        <Route path=":customerId" component={ Customer }/>
+                    </Route>
+                    <Route path="new-customer" component={ NewCustomerPage } />
                 </Route>
-                <Route path="new-customer" component={ NewCustomerPage } />
-                <Route path="blog" component={ BlogPage } />
-                <Route path="picture" component={ PicturePage } />
-                <Route path="video" component={ VideoPage } />
-            </Route>
-          </Router>
+            </Router>
         );
     }
 }

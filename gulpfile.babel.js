@@ -23,17 +23,17 @@ var bundler = browserify('src/app.js', watchify.args);
 
 // Babel transform
 bundler.transform(babelify.configure({
-  sourceMapRelative: 'src'
+    sourceMapRelative: 'src'
 }));
 
 // On updates recompile
 bundler.on('update', bundle);
 
 function bundle() {
-  return bundler.bundle()
+    return bundler.bundle()
     .on('error', function(error){
-      console.error( '\nError: ', error.message, '\n');
-      this.emit('end');
+        console.error( '\nError: ', error.message, '\n');
+        this.emit('end');
     })
     .pipe(exorcist('public/assets/js/bundle.js.map'))
     .pipe(source('bundle.js'))
@@ -44,16 +44,16 @@ function bundle() {
 
 function bundleStyle() {
     var styleStream = gulp.src('./src/styles/index.scss')
-        .on('error', function(error){
-          console.error( '\nError: ', error.message, '\n');
-          this.emit('end');
-        })
-        .pipe(sass({ outputStyle: 'nested' }))
-        .pipe(autoprefixer({ browsers: [ 'IE >= 9', 'Android > 0' ] }))
-        .pipe(rename('style.css'))
-        .pipe(ifElse(process.env.NODE_ENV === 'production', minifyCSS));
+    .on('error', function(error){
+        console.error( '\nError: ', error.message, '\n');
+        this.emit('end');
+    })
+    .pipe(sass({ outputStyle: 'nested' }))
+    .pipe(autoprefixer({ browsers: [ 'IE >= 9', 'Android > 0' ] }))
+    .pipe(rename('style.css'))
+    .pipe(ifElse(process.env.NODE_ENV === 'production', minifyCSS));
 
-        return styleStream.pipe(gulp.dest('public/assets/styles'));
+    return styleStream.pipe(gulp.dest('public/assets/styles'));
 }
 
 gulp.task('default', ['transpile']);
@@ -61,9 +61,9 @@ gulp.task('default', ['transpile']);
 gulp.task('transpile', ['lint'], () => bundle());
 
 gulp.task('lint', () => {
-    // return gulp.src(['src/**/*.js', 'gulpfile.babel.js'])
-    //   .pipe(eslint())
-    //   .pipe(eslint.format());
+    return gulp.src(['src/**/*.js', 'gulpfile.babel.js'])
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
 gulp.task('styles', () => bundleStyle());
@@ -73,13 +73,13 @@ gulp.task('js-watch', ['transpile'], () => sync.reload());
 gulp.task('style-watch', ['styles'], () => sync.reload());
 
 gulp.task('watch', ['serve'], () => {
-  gulp.watch('src/**/*', ['js-watch']);
-  gulp.watch('src/styles/*.scss', ['style-watch']);
-  gulp.watch('public/assets/style.css', sync.reload);
-  gulp.watch('public/index.html', sync.reload);
+    gulp.watch('src/**/*', ['js-watch']);
+    gulp.watch('src/styles/*.scss', ['style-watch']);
+    gulp.watch('public/assets/style.css', sync.reload);
+    gulp.watch('public/index.html', sync.reload);
 });
 
 gulp.task('demo', ['transpile'], () => {
-  gulp.src(['public/**/*'])
+    gulp.src(['public/**/*'])
     .pipe(gulp.dest('demo'));
 });
